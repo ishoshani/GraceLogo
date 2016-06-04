@@ -3,23 +3,31 @@
 //We purposefully do not include the standard Prelude
 dialect "dialect"
 import "objectdraw" as od
-import "math" as mt
 inherit prelude.methods
-var location is readable := "nope"
-var heading is readable := "nope"
+class Uninit{
+    method ==(other){
+        if(self.isMe(other))then{return true}
+        return false
+    }    
+}
+def notInitialized is readable = Uninit
+var location is readable := notInitialized
+var heading is readable := notInitialized
 var nib: Boolean is readable := false
-var GA is readable:= "nope"
-var C := "nope"
+var GA is readable := notInitialized
+var C := notInitialized
+
 method lazyInitLocation (point){
-    if(location=="nope")then{location:=point}
+   if(notInitialized==location)then{location:=point}
 }
 method lazyInitHeading(n){
-    if(heading=="nope")then{heading:=n}
+    if(notInitialized==heading)then{heading:=n}
 }
 method lazyInitAppSize(x,y){
-    if("nope"==GA)then{
+    if(notInitialized==GA)then{
         GA := od.graphicApplicationSize(x@y)
-        C := GA.canvas}
+        C := GA.canvas
+    }
 }
 method left(degree:Number){
     lazyInitHeading(270)
@@ -39,23 +47,22 @@ method setNib(on:Boolean){
     nib := on
 }
 method toRadians(degree:Number){
-    return (degree/180 * mt.pi)%(mt.pi *2)
+    return (degree/180 * π)%(π *2)
 }
 method toDegrees(radians:Number){
-    return (radians/mt.pi * 180)%360
+    return (radians/π * 180)%360
 }
 method moveForward(n:Number){
     lazyInitLocation(250@250)
-    lazyInitAppSize(500,500)
-    def nx= location.x + mt.cos(toRadians(heading)) * n
-    def ny= location.y + mt.sin(toRadians(heading)) * n
+    lazyInitAppSize(500, 500)
+    def nx= location.x + (toRadians(heading)).cos * n
+    def ny= location.y + (toRadians(heading)).sin * n
     if {nib} then {od.lineFrom(location)to(nx@ny)on(C)}
     location := nx@ny
 }
 method show{
-    lazyInitAppSize(500,500)
+    lazyInitAppSize(500, 500)
     lazyInitHeading(270)
     lazyInitLocation(250@250)
     GA.startGraphics
 }
-

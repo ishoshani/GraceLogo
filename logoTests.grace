@@ -1,4 +1,4 @@
-dialect "logoDialect"
+dialect "LogoDialect"
 import "gUnit" as gU
 import "math" as mt
 def logoTest = object {
@@ -6,19 +6,19 @@ def logoTest = object {
         inherits gU.testCaseNamed(m)
     
         method testIsNotInitialized{
-            assert(location) shouldBe("nope")
-            assert(heading) shouldBe("nope")
-            assert(GA) shouldBe("nope")
+            assert(location) shouldBe(notInitialized)
+            assert(heading) shouldBe(notInitialized)
+            assert(GA) shouldBe(notInitialized)
         }
         method hasLocationandHeading{
             moveForward(0)
             assert(location) shouldBe(250@250)
             assert(heading) shouldBe (0)
-            assert(heading!="nope")
+            deny(notInitialized==heading)
         }
         method testGrapicsWork{
             show
-            assert("nope"!=GA)
+            deny(notInitialized==GA)
         }
         method testMoveForward{
             assert(location) shouldBe(250@250)
@@ -27,6 +27,7 @@ def logoTest = object {
             assert(location) shouldBe(250@240)
         }
         method testDrawLine{
+            assert(location) shouldBe(250@240)
             nibSwitch
             moveForward(10)
             assert(location) shouldBe(250@230)
