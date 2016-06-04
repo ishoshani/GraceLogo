@@ -1,7 +1,7 @@
 # GraceLogo
 This is a simple Dialect Library for grace for implementing turtle graphics and restricting user to just that!
 
-Full User Documentation at : http://ishoshani.github.io/GraceLogo2/
+Full User Documentation at : http://ishoshani.github.io/GraceLogo/
 
 This Library is dependent on the Grace objectDraw library, found at https://github.com/gracelang/objectdraw
 
