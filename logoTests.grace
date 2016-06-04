@@ -1,69 +1,61 @@
-dialect "LogoDialect"
+import "logoDialect" as LD
 import "gUnit" as gU
 import "math" as mt
 def logoTest = object {
     class forMethod(m){
         inherits gU.testCaseNamed(m)
-    
         method testIsNotInitialized{
-            assert(location) shouldBe(notInitialized)
-            assert(heading) shouldBe(notInitialized)
-            assert(GA) shouldBe(notInitialized)
+            assert(LD.location) shouldBe(LD.notInitialized)
+            assert(LD.heading) shouldBe(LD.notInitialized)
+            assert(LD.GA) shouldBe(LD.notInitialized)
         }
         method hasLocationandHeading{
-            moveForward(0)
-            assert(location) shouldBe(250@250)
-            assert(heading) shouldBe (0)
-            deny(notInitialized==heading)
+            LD.moveForward(0)
+            assert(LD.location) shouldBe(250@250)
+            assert(LD.heading) shouldBe (0)
+            deny(LD.notInitialized==LD.heading)
         }
         method testGrapicsWork{
-            show
-            deny(notInitialized==GA)
+            LD.show
+            deny(LD.notInitialized==LD.GA)
         }
         method testMoveForward{
-            assert(location) shouldBe(250@250)
-            setAngle(270)
-            moveForward(10)
-            assert(location) shouldBe(250@240)
+            assert(LD.location) shouldBe(250@250)
+            LD.setAngle(270)
+            LD.moveForward(10)
+            assert(LD.location) shouldBe(250@240)
         }
         method testDrawLine{
-            assert(location) shouldBe(250@240)
-            nibSwitch
-            moveForward(10)
-            assert(location) shouldBe(250@230)
-            assert(nib) shouldBe(true)
+            assert(LD.location) shouldBe(250@240)
+            LD.nibSwitch
+            LD.moveForward(10)
+            assert(LD.location) shouldBe(250@230)
+            assert(LD.nib) shouldBe(true)
         }
         method testManualNib{
-            nibSwitch
-            nibSwitch
-            nibSwitch
-            nibSwitch
-            nibSwitch
-            nibSwitch
-            nibSwitch
-            setNib(true)
-            assert(nib) shouldBe(true)
-            setNib(false)
-            assert(nib) shouldBe(false)
+            LD.setNib(true)
+            assert(LD.nib) shouldBe(true)
+            LD.setNib(false)
+            assert(LD.nib) shouldBe(false)
         }
         method testToRadians{
-            assert(toRadians(45))shouldBe(mt.pi/4)
-            assert(toRadians(360+45))shouldBe(mt.pi/4)
+            assert(LD.toRadians(45))shouldBe(π/4)
+            assert(LD.toRadians(360+45))shouldBe(π/4)
         }
         method testToDegrees{
-            assert(toDegrees(mt.pi/4))shouldBe(45)
-            assert(toDegrees(2*mt.pi))shouldBe(0)
+            assert(LD.toDegrees(π/4))shouldBe(45)
+            assert(LD.toDegrees(2*π))shouldBe(0)
         }
         method testWhileSquare{
-            def currentLocation=location
+            def currentLocation=LD.location
             var i := 0
-            setNib(true)
+            LD.setNib(true)
             while{(i < 4)}do{
-                right(90)
-                moveForward(40)
+                LD.right(90)
+                LD.moveForward(40)
                 i := i+1
             }
-            assert(location)shouldBe(currentLocation)
+            assert(LD.location)shouldBe(currentLocation)
             
         }
             

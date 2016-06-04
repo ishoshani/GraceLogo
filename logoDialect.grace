@@ -66,3 +66,27 @@ method show{
     lazyInitLocation(250@250)
     GA.startGraphics
 }
+//End Of New Methods
+type testClass={}
+
+fail "classes are not allowed at this level" // this rule will fail the tests as is! make sure to import into tests rather than dialect in
+    when {n : Method -> n.isClass}
+fail "please declare as numbers, booleans, and string are allowed at this level"
+    when {n : Var -> 
+        if((n.decType.value != "Number") && (n.decType.value!= "Boolean") && (n.decType.value != "String"))then{
+            fail("please declare variables as Numbers, Booleans, and String are allowed at this level")
+            true
+        }
+        false       
+    }
+fail "please declare as numbers, booleans, and string are allowed at this level"
+    when {n : Def -> 
+        if((n.decType.value != "Number") && (n.decType.value!= "Boolean") && (n.decType.value != "String"))then{
+            fail("please declare defined identifiers as Numbers, Booleans, and String are allowed at this level")
+            true
+        }
+        false       
+    }
+method checker(code){
+    check(code)
+}
