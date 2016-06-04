@@ -1,4 +1,4 @@
-# GraceLogo2
+# GraceLogo
 This is a simple Dialect Library for grace for implementing turtle graphics and restricting user to just that!
 
 Full User Documentation at : http://ishoshani.github.io/GraceLogo2/
