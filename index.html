@@ -87,7 +87,7 @@
     	    	<br/>
 
     	<div class="row">
-    		<p>before we do anything, we want to start up the picture! So use <code>show</code> for that!</p> 
+    		<h2>before we do anything, we want to start up the picture! So use <code>show</code> for that!</h2> 
     		<p>Make sure popups are allowed though, and that you have the objectdraw library present!</p>
     	</div>
     	    	<br/>
@@ -96,7 +96,7 @@
     		<div class="col-md-6"> An Example to get us started! <br/> --> </div>
     		<div class="col-md-6"> 
 <pre>dialect "logoDialect"
-show // creates our 500 by 500 window, and starts the turtle at 250,250, with initial heading 270
+show // creates our 500 by 500 window, and starts the turtle at 250,250, with initial heading 0, right, along the x-axis
 right(90)
 nibSwitch //turns on the nib, since it starts at off
 moveForward(50)
@@ -109,7 +109,7 @@ MoveForward(50)</pre>
 			</div>
     	</div>
     	<div class="row">
-    		<div class="col-md-6"> <p>This Should give us <br/> --> </p></div>
+    		<div class="col-md-6"> <p>This Should give us <br/> --> </p> Notice that (0,0) is at the top left, but we use angles as if we were in a normal graph</div>
     		<div class="col-md-6"> <img src="LogoExample1.png" style="border: black ; background-color: #f4f0ff; border-style: solid; "></div>
     	</div>
     <div class="row">
@@ -162,7 +162,10 @@ i+1
             <small> don't bother looking if you are just using the library</small>
         </div>
         <div class="row">
-            <p> This library requires the use of lazy initialization. You can't use anything that you see at the top level! you must first use one of the <code>lazyInit</code> Methods for any element before you use them. This is to cover for in case the user forgets to start with show, or wants to set something before actually using the window. If you add new elements, especially any that involve the graphic view rather than the model, make sure you initialize the new elements at the top level as the notInitialized Object, then add a lazy initializer that checks if that notInitialized is equal to that Object. If they are equal, then you can initialized it! This is all necessary because top level code actually occurs while the compiling is happening, so a a graphics application can not appear from the browser during that time! We lazy initialize all our none boolean elements to stay consistent though.
+            <p> This library requires the use of lazy initialization. You can't use anything that you see at the top level! you must first use one of the <code>lazyInit</code> Methods for any element before you use them. This is to cover for in case the user forgets to start with show, or wants to set something before actually using the window. If you add new elements, especially any that involve the graphic view rather than the model, make sure you initialize the new elements at the top level as the notInitialized Object, then add a lazy initializer that checks if that notInitialized is equal to that Object. If they are equal, then you can initialized it! This is all necessary because top level code actually occurs while the compiling is happening, so a a graphics application can not appear from the browser during that time! We lazy initialize all our none boolean elements to stay consistent though.</p>
+            <p>
+                We also have the <code>asRadian(degree)</code>,<code>asDegree(radians)</code> to convert our units, as well as <code>asAngle</code> to automatically set The degree of our heading within 360, with 0 point right along the x-axis and 90 pointing directly up.
+            </p>
         </div>
     </div>
     
