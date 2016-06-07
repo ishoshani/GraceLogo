@@ -157,6 +157,13 @@ i+1
             <div class="col-md-6"> <p>This Should give us <br/> --> </p></div>
             <div class="col-md-6"> <img src="WebExample4.png" style="border: black ; background-color: #f4f0ff; border-style: solid; "></div>
         </div>
+        <div class="row">
+            <h1>Developer Stuff</h1>
+            <small> don't bother looking if you are just using the library</small>
+        </div>
+        <div class="row">
+            <p> This library requires the use of lazy initialization. You can't use anything that you see at the top level! you must first use one of the <code>lazyInit</code> Methods for any element before you use them. This is to cover for in case the user forgets to start with show, or wants to set something before actually using the window. If you add new elements, especially any that involve the graphic view rather than the model, make sure you initialize the new elements at the top level as the notInitialized Object, then add a lazy initializer that checks if that notInitialized is equal to that Object. If they are equal, then you can initialized it! This is all necessary because top level code actually occurs while the compiling is happening, so a a graphics application can not appear from the browser during that time! We lazy initialize all our none boolean elements to stay consistent though.
+        </div>
     </div>
     
 
