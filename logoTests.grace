@@ -4,10 +4,9 @@ import "math" as mt
 def logoTest = object {
     class forMethod(m){
         inherits gU.testCaseNamed(m)
-        method testIsNotInitialized{
-            assert(LD.location) shouldBe(LD.notInitialized)
-            assert(LD.heading) shouldBe(LD.notInitialized)
-            assert(LD.GA) shouldBe(LD.notInitialized)
+        method accessorTest{
+            assert(LD.location) shouldBe(250@250)
+            assert(LD.heading) shouldBe(0)
         }
         method hasLocationandHeading{
             LD.moveForward(0)
@@ -21,21 +20,21 @@ def logoTest = object {
         }
         method testMoveForward{
             assert(LD.location) shouldBe(250@250)
-            LD.setAngle(270)
+            LD.heading:=(270)
             LD.moveForward(10)
             assert(LD.location) shouldBe(250@240)
         }
         method testDrawLine{
             assert(LD.location) shouldBe(250@240)
-            LD.nibSwitch
+            LD.nib:=true
             LD.moveForward(10)
             assert(LD.location) shouldBe(250@230)
             assert(LD.nib) shouldBe(true)
         }
         method testManualNib{
-            LD.setNib(true)
+            LD.nib:=(true)
             assert(LD.nib) shouldBe(true)
-            LD.setNib(false)
+            LD.nib:=(false)
             assert(LD.nib) shouldBe(false)
         }
         method testToRadians{
@@ -49,7 +48,7 @@ def logoTest = object {
         method testWhileSquare{
             def currentLocation=LD.location
             var i := 0
-            LD.setNib(true)
+            LD.nib:=(true)
             while{(i < 4)}do{
                 LD.right(90)
                 LD.moveForward(40)
